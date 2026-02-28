@@ -1,8 +1,9 @@
 # setup-xcode
 
-Fast Xcode selection for GitHub Actions.
+Xcode selection for GitHub Actions.
 
-This action switches between preinstalled Xcode apps on macOS runners. It is optimized for GitHub-hosted images and also works in self-hosted environments when Xcode apps live in searchable directories.
+This action switches between preinstalled Xcode apps on macOS runners.
+It is optimized for GitHub-hosted images and also works in self-hosted environments when Xcode apps live in searchable directories.
 
 ## Inputs
 
@@ -40,7 +41,7 @@ jobs:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: JohnTitor/setup-xcode@v1
+      - uses: JohnTitor/setup-xcode@v0.1.1
         with:
           xcode-version: latest-stable
       - run: xcodebuild -version
@@ -49,7 +50,7 @@ jobs:
 Specific version:
 
 ```yaml
-- uses: JohnTitor/setup-xcode@v1
+- uses: JohnTitor/setup-xcode@v0.1.1
   with:
     xcode-version: '16.4'
 ```
@@ -57,7 +58,7 @@ Specific version:
 Prerelease:
 
 ```yaml
-- uses: JohnTitor/setup-xcode@v1
+- uses: JohnTitor/setup-xcode@v0.1.1
   with:
     xcode-version: '16.4-beta'
 ```
@@ -75,10 +76,6 @@ It accepts a comma-separated list of directories.
 ## Environment variables used
 
 - `MD_APPLE_SDK_ROOT` is exported to the selected Xcode app path for downstream steps.
-
-## Benchmarking
-
-A benchmark workflow is included (`.github/workflows/benchmark.yml`) and uses `scripts/benchmark.sh` to compare median runtime against `maxim-lobanov/setup-xcode@v1` on the same macOS runner class.
 
 ## License
 

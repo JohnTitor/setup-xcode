@@ -20,5 +20,5 @@ This repository intentionally implements `setup-xcode` behavior from scratch.
   - `latest-stable`
   - exact versions: `16`, `16.4`, `16.4.0`
   - prerelease suffix: `16.4-beta`
-- Explicitly unsupported in v1:
+- unsupported selectors:
   - complex semver ranges (`^16.4.0`, `~16.4`, `>=16`)

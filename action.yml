@@ -1,5 +1,5 @@
 name: setup-xcode
-description: Fast Xcode selector for GitHub Actions macOS runners.
+description: Xcode selector for GitHub Actions macOS runners.
 inputs:
   xcode-version:
     description: >
