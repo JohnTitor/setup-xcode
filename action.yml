@@ -1,0 +1,27 @@
+name: setup-xcode
+description: Fast Xcode selector for GitHub Actions macOS runners.
+inputs:
+  xcode-version:
+    description: >
+      Selector for Xcode version. Supported: latest, latest-stable, exact
+      versions (16.4.0), major/minor prefixes (16, 16.4), and -beta suffix.
+    required: false
+    default: latest-stable
+outputs:
+  version:
+    description: Resolved Xcode version.
+    value: ${{ steps.setup.outputs.version }}
+  path:
+    description: Resolved Xcode app path.
+    value: ${{ steps.setup.outputs.path }}
+runs:
+  using: composite
+  steps:
+    - id: setup
+      shell: bash
+      env:
+        XCODE_VERSION: ${{ inputs.xcode-version }}
+      run: ${{ github.action_path }}/scripts/setup-xcode.sh
+branding:
+  icon: code
+  color: gray-dark

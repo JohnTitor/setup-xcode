@@ -1,0 +1,40 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  shell-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+
+      - name: Run shell tests
+        run: tests/test_setup_xcode.sh
+
+  macos-smoke:
+    runs-on: macos-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+
+      - name: Setup Xcode
+        id: setup
+        uses: ./
+        with:
+          xcode-version: latest-stable
+
+      - name: Verify outputs and toolchain
+        env:
+          RESOLVED_VERSION: ${{ steps.setup.outputs.version }}
+          RESOLVED_PATH: ${{ steps.setup.outputs.path }}
+        run: |
+          set -euo pipefail
+          test -n "$RESOLVED_VERSION"
+          test -n "$RESOLVED_PATH"
+          xcodebuild -version
