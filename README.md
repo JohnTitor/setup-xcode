@@ -5,6 +5,19 @@ Xcode selection for GitHub Actions.
 This action switches between preinstalled Xcode apps on macOS runners.
 It is optimized for GitHub-hosted images and also works in self-hosted environments when Xcode apps live in searchable directories.
 
+## Runner availability
+
+This action does not install Xcode. It only selects an Xcode app that is already
+installed on the runner.
+
+Available Xcode versions depend on the runner selected by `runs-on`.
+Choose a runner image that includes the required Xcode version,
+or use a self-hosted runner with that Xcode installed.
+
+For GitHub-hosted runners, check the macOS image documentation in
+[`actions/runner-images`](https://github.com/actions/runner-images/tree/main/images/macos)
+to see which Xcode versions are currently installed.
+
 ## Inputs
 
 | Input | Required | Default | Description |
